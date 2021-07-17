@@ -1,51 +1,54 @@
-version : '3.8'
+version: "3.8"
 
-services :
+services:
   db:
-    image: postgres:11-alpine
-    environment:
-      - POSTGRES_DB:blogs
-      - POSTGRES_USER:postgres
-      - POSTGRES_PASSWORD:1
+    image: postgres
     volumes:
-      - dbdata:/var/lib/postgresql/data
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1
   web:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: django
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "
+                python manage.py makemigrations --noinput &&
+                python manage.py migrate --noinput &&
+                python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code/
     ports:
       - "8000:8000"
     depends_on:
       - db
- # redis:
-  #  image: "redis:alpine"
-   # ports:
-   #   - "6379:6379"
-   # depends_on:
-   #   - db
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    depends_on:
+      - db
 
-#  worker:
- #   build: .
-  #  command: celery -A myBlog worker -l INFO
-   # volumes:
-    #  - .:/code/
-    #depends_on:
-     # - web
-      #- monitor
-      #- db
+  worker:
+    build: .
+    command: celery -A myBlog worker -l INFO
+    volumes:
+      - .:/code/
+    depends_on:
+      - web
+      - monitor
+      - db
 
- # monitor:
-  #  build: .
-   # command: celery -A myBlog beat -l INFO
-    #volumes:
-     # - .:/code/
-    #depends_on:
-    #  - web
-    #  - redis
-     # - db
+  monitor:
+    build: .
+    command: celery -A myBlog beat -l INFO
+    volumes:
+      - .:/code/
+    depends_on:
+      - web
+      - redis
+      - db
 volumes:
   dbdata:

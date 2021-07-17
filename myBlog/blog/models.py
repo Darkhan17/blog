@@ -5,8 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Author(AbstractUser):
-    id = models.IntegerField(primary_key=True,unique=True)
-    name = models.CharField(max_length=200)
+    #id = models.IntegerField(primary_key=True,unique=True)
     email = models.EmailField(unique=True, max_length=255, default='')
     password = models.CharField(max_length=200)
     git_nickname = models.CharField(max_length=200, blank=True
