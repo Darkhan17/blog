@@ -108,7 +108,7 @@ class BlogAPIView(APIView):
 
 
 class ProjectAPIView(APIView):
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated, OwnProfilePermission]
 
     def get_object(self, pk):
         try:
