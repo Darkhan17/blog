@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ff711f3-61a8-4efd-abd4-0d58acdb1989" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/myBlog/API/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myBlog/API/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myBlog/API/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myBlog/API/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myBlog/API/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myBlog/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myBlog/blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myBlog/celerybeat-schedule" beforeDir="false" afterPath="$PROJECT_DIR$/myBlog/celerybeat-schedule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myBlog/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/myBlog/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myBlog/myBlog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myBlog/myBlog/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -132,10 +134,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1626498633518" />
-    <state x="390" y="284" key="com.intellij.ide.util.TipDialog" timestamp="1626580129599">
-      <screen x="0" y="23" width="1403" height="877" />
+    <state x="400" y="268" key="com.intellij.ide.util.TipDialog" timestamp="1626662399817">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="400" y="268" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1626436213402" />
+    <state x="400" y="268" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1626662399817" />
     <state x="390" y="284" key="com.intellij.ide.util.TipDialog/0.23.1403.877@0.23.1403.877" timestamp="1626580129599" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1625760044704">
       <screen x="0" y="0" width="1440" height="900" />

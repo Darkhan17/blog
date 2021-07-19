@@ -1,34 +1,51 @@
 from blog.models import Author,Project,Blog
 
-from django.contrib.auth.decorators  import login_required
 from .permissions import OwnBlogPermission, OwnProfilePermission
 
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404
-from rest_framework import status,generics
+from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-
+from .utils import ViewListMixin
 
 from .serializers import BlogSerializer,AuthorSerializer,ProjectSerializer
-
+from rest_framework.decorators import api_view
 # Create your views here.
 
 
 
-class ProjectList(generics.ListCreateAPIView):
+
+
+
+
+@api_view(['GET'])
+def getMyBlogs(request,user):
+    blogs = Blog.objects.filter(user = user)
+    serializer = BlogSerializer(data=blogs,many=True)
+    return Response(serializer.data)
+
+
+class ProjectList(ViewListMixin):
+
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-class BlogList(generics.ListCreateAPIView):
+
+
+
+class BlogList(ViewListMixin):
+
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
-class AuthorList(generics.ListAPIView):
+
+
+class AuthorList(ViewListMixin):
+
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
-
 
 
 class AuthorAPIView(APIView):
@@ -108,7 +125,7 @@ class BlogAPIView(APIView):
 
 
 class ProjectAPIView(APIView):
-    permission_classes = [IsAuthenticated, OwnProfilePermission]
+    permission_classes = [IsAuthenticated, OwnBlogPermission]
 
     def get_object(self, pk):
         try:
@@ -121,3 +138,4 @@ class ProjectAPIView(APIView):
         project = self.get_object(pk)
         serializer = ProjectSerializer(project)
         return Response(serializer.data, status=status.HTTP_200_OK)
+

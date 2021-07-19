@@ -30,7 +30,6 @@ services:
       - "6379:6379"
     depends_on:
       - db
-
   worker:
     build: .
     command: celery -A myBlog worker -l INFO
@@ -40,7 +39,6 @@ services:
       - web
       - monitor
       - db
-
   monitor:
     build: .
     command: celery -A myBlog beat -l INFO
@@ -50,5 +48,11 @@ services:
       - web
       - redis
       - db
+  cache:
+    image: "redis:alpine"
+    ports:
+      - "6380:6380"
+    command: redis-server --port 6380
+
 volumes:
   dbdata:
